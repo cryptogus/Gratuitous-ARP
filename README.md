@@ -16,17 +16,16 @@ I used rawsocket for my implementation.
 
 ### Reference  
 https://wiki.wireshark.org/Gratuitous_ARP  
-https://en.wikipedia.org/wiki/Address_Resolution_Protocol#ARP_announcements  
 https://www.practicalnetworking.net/series/arp/gratuitous-arp/  
-https://en.wikipedia.org/wiki/ARP_spoofing  
+https://en.wikipedia.org/wiki/Address_Resolution_Protocol#ARP_announcements  
 https://velog.io/@yellowsky24/데비안에서-GARP로  
+https://en.wikipedia.org/wiki/ARP_spoofing
+
 ### Reference in implementation
 https://en.wikipedia.org/wiki/Ethernet_frame  
 https://en.wikipedia.org/wiki/EtherType  
 https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml  
-
-https://api.riot-os.org/structsockaddr__ll.html
-
+https://api.riot-os.org/structsockaddr__ll.html  
 https://stackoverflow.com/questions/4139405/how-can-i-get-to-know-the-ip-address-for-interfaces-in-c
 
 ### arp-spoofing
