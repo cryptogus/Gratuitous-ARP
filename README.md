@@ -14,6 +14,25 @@ A Gratuitous ARP packet has the same format as a regular ARP packet but may have
 There are various ways to implement GARP, such as using rawsocket or using the pcap library.  
 I used rawsocket for my implementation.
 
+## Gratuitous ARP TEST
+My Network information in WSL2
+```bash
+$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.255.2  netmask 255.255.240.0  broadcast 172.20.255.255
+        inet6 fe80::215:5dff:fe5a:e6b3  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:5a:e6:b3  txqueuelen 1000  (Ethernet)
+        RX packets 1024  bytes 802933 (802.9 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1148  bytes 442262 (442.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+```bash
+$ cd src/ && make
+$ sudo ./garp-test eth0 172.20.255.2
+```
+I used wireshark.  
+![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)
 ### Reference  
 https://wiki.wireshark.org/Gratuitous_ARP  
 https://www.practicalnetworking.net/series/arp/gratuitous-arp/  
