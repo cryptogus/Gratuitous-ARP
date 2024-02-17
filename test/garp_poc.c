@@ -94,7 +94,7 @@ void sendGratuitousARP(const char *interface, const char *ipAddress) {
     memset(&sa, 0, sizeof(struct sockaddr_ll));
     sa.sll_family = AF_PACKET;
     sa.sll_protocol = htons(ETH_P_ARP);
-    sa.sll_ifindex = if_nametoindex("eth0");  // Replace with your network interface
+    sa.sll_ifindex = if_nametoindex(interface);  // Replace with your network interface
     // Send ARP packet
     if (sendto(sock, arpPacket, sizeof(arpPacket), 0, (struct sockaddr*)&sa, sizeof(struct sockaddr_ll)) == -1) {
         perror("Error sending ARP packet");
