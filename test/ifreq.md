@@ -30,7 +30,7 @@ struct ifreq {
 
 2. `union`: 다양한 정보를 저장하기 위한 `union`입니다. 멤버로는 다양한 종류의 정보를 저장하는 멤버들이 있습니다.
 
-   - `ifr_addr`: 네트워크 인터페이스의 주소 정보를 저장하는 `sockaddr` 구조체입니다.
+   - `ifr_addr`: 네트워크 인터페이스의 주소 정보를 저장하는 `sockaddr` 구조체입니다. (ifr_addr 구조체의 sa_data 멤버는 주로 MAC 주소를 담고 있습니다. IPv4 를 가지고 있다는데 잘 모르겠다.)
    - `ifr_dstaddr`: 목적지 주소 정보를 저장하는 `sockaddr` 구조체입니다.
    - `ifr_broadaddr`: 브로드캐스트 주소 정보를 저장하는 `sockaddr` 구조체입니다.
    - `ifr_netmask`: 네트워크 마스크 정보를 저장하는 `sockaddr` 구조체입니다.

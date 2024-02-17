@@ -24,7 +24,23 @@
 #define ARCNET 7   // ARCnet
 #define	HC 8       // Hyperchannel
 #define	LANSTAR 9  // Lanstar
+void
+print_raw_packet (struct gratuitous_arp *packet, unsigned int packet_len)
+{
+    char buffer[packet_len];
+    memcpy(buffer, packet, packet_len);
 
+    for(int i = 0; i < packet_len; i++) {
+
+        /* Breaks line for each 32 bits size */
+        if(!(i % 4)) {
+            fprintf(stdout, "\n");
+        }
+
+        fprintf(stdout, "%.2X ", buffer[i] & 0xff);
+    }
+    fprintf(stdout, "\n");
+}
 void sendGratuitousARP(const char *interface, const char *ipAddress) {
     /* Raw socket */
     int sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ARP));
@@ -101,7 +117,7 @@ void sendGratuitousARP(const char *interface, const char *ipAddress) {
         close(sock);
         exit(EXIT_FAILURE);
     }
-
+    
     printf("Gratuitous ARP sent successfully.\n");
 
     close(sock);
