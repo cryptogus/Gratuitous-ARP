@@ -1,5 +1,22 @@
 #ifndef __ARPHDR_H
 #define __ARPHDR_H
+/* C standard library */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+/* System libraries */
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <linux/if_ether.h>  // For ETH_P_ARP
+#include <linux/if_packet.h> // For struct sockaddr_ll
+
+/* Networking header files */
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <net/if.h>
+#include <net/ethernet.h>
 
 #include "ethhdr.h"
 // HardwareType (HTYPE)
@@ -20,12 +37,13 @@ typedef struct arphdr_t {
     uint16_t ptype;    // Protocol type (IPv4)
     uint8_t  hlen;     // Hardware address length
     uint8_t  plen;     // Protocol address length
-    uint16_t oper;     // Operation (ARP Reply)
+    uint16_t oper;     // Operation (ARP Request is 1, Reply is 2)
     uint8_t  smac[6];  // Sender hardware address (MAC address)
     uint32_t sip;      // Sender protocol address (IP address)
     uint8_t  tmac[6];  // Target hardware address (MAC address)
     uint32_t tip;      // Target protocol address (IP address)
-} ArpHdr_t;
+} __attribute__((packed)) ArpHdr_t;
 
+void sendGARP(const char *interface, const char *ipAddress);
 
 #endif
