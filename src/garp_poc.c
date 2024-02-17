@@ -94,13 +94,23 @@ void sendGratuitousARP(const char *interface, const char *ipAddress) {
 
     close(sock);
 }
-
-int main() {
-    const char *interface = "eth0";          // My network interface
-    const char *ipAddress = "172.29.98.119";    // My IP address
-    //const char *targetMacAddress = "FF:FF:FF:FF:FF:FF"; 
-
-    sendGratuitousARP(interface, ipAddress);
+void uasge(void) {
+    printf("Usage: garp_poc <interface> <ipAddress>\n");
+    printf("Sample: garp_poc eth0 192.168.7.192\n");
+}
+int main(int argc, char *argv[]) {
+    /**
+     * Test
+    */
+    //const char *interface = "eth0";          // My network interface
+    //const char *ipAddress = "172.29.98.119";    // My IP address
+    //sendGratuitousARP(interface, ipAddress);
+    
+    if (argc != 3) {
+        uasge();
+        return 3;
+    }
+    sendGratuitousARP(argv[1], argv[2]);
 
     return 0;
 }
