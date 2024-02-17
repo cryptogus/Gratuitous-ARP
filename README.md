@@ -32,7 +32,33 @@ $ cd src/ && make
 $ sudo ./garp-test eth0 172.20.255.2
 ```
 I used wireshark.  
-![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)
+![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)  
+
+---
+**IPv6 does not use the ARP (Address Resolution Protocol) as IPv4 does.** Instead, it uses the Neighbor Discovery Protocol ([NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)) to perform functions similar to ARP in IPv4. NDP is part of the ICMPv6 (Internet Control Message Protocol version 6) suite.
+
+Here are the key differences between ARP in IPv4 and NDP in IPv6:
+
+1. **Address Resolution:**
+   - **IPv4 (ARP):** ARP is used to map an IPv4 address to a corresponding MAC (Media Access Control) address.
+   - **IPv6 (NDP):** NDP performs both address resolution and neighbor discovery. It can resolve the link-layer address (like MAC address) associated with an IPv6 address and discover neighbors on the link.
+
+2. **Protocol Type:**
+   - **IPv4 (ARP):** ARP operates at the Link Layer and is part of the TCP/IP protocol suite.
+   - **IPv6 (NDP):** NDP is part of the ICMPv6 protocol suite, and it operates at the Network Layer.
+
+3. **Multicast Addresses:**
+   - **IPv4 (ARP):** ARP requests are broadcasted to all devices on the local network.
+   - **IPv6 (NDP):** NDP uses multicast addresses, such as the Solicited-Node multicast address, for more efficient communication.
+
+4. **Router Discovery:**
+   - **IPv4 (ARP):** ARP does not include a mechanism for router discovery.
+   - **IPv6 (NDP):** NDP includes Router Advertisement and Router Solicitation messages for router discovery in IPv6 networks.
+
+5. **Duplicate Address Detection (DAD):**
+   - **IPv4 (ARP):** ARP does not have a standardized mechanism for Duplicate Address Detection.
+   - **IPv6 (NDP):** NDP includes Duplicate Address Detection to avoid conflicts during address assignment.
+
 ### Reference  
 https://wiki.wireshark.org/Gratuitous_ARP  
 https://www.practicalnetworking.net/series/arp/gratuitous-arp/  
