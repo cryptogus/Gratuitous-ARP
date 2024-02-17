@@ -1,7 +1,7 @@
 #ifndef __ARPHDR_H
 #define __ARPHDR_H
 
-#include <stdint.h>
+#include "ethhdr.h"
 // HardwareType (HTYPE)
 
 #define	ETHER 1    // Ethernet 10Mbps
@@ -15,6 +15,7 @@
 #define	LANSTAR 9  // Lanstar
 
 typedef struct arphdr_t {
+    EthHdr_t frame;    // Ethernet header
     uint16_t htype;    // Hardware type (Ethernet)
     uint16_t ptype;    // Protocol type (IPv4)
     uint8_t  hlen;     // Hardware address length
