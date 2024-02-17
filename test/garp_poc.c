@@ -40,6 +40,18 @@ void sendGratuitousARP(const char *interface, const char *ipAddress) {
         close(sock);
         exit(EXIT_FAILURE);
     }
+// Create an ARP request packet
+    // unsigned char packet[42] = {
+    //     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,  // Destination MAC (broadcast)
+    //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // Source MAC (replace with your MAC address)
+    //     0x08, 0x06,                          // EtherType (ARP)
+    //     0x00, 0x01, 0x08, 0x00,              // ARP header (Ethernet + IPv4)
+    //     0x06, 0x04, 0x00, 0x01,              // ARP hardware type, protocol type, length
+    //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // Sender MAC (replace with your MAC address)
+    //     0xC0, 0xA8, 0x01, 0x01,              // Sender IP address (replace with your IP address)
+    //     0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // Target MAC (blank for ARP request)
+    //     0xC0, 0xA8, 0x01, 0x02               // Target IP address
+    // };
 
 /* Create ARP packet */
     char arpPacket[42];
