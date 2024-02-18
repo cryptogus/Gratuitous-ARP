@@ -2,8 +2,8 @@
 #include "arphdr.h"
 
 void uasge(void) {
-    printf("Usage: garp <interface> <ipAddress>\n");
-    printf("Sample: garp eth0 192.168.7.192\n");
+    printf("Usage: sned_garp <interface> <ipAddress>\n");
+    printf("Sample: sned_garp eth0 192.168.7.192\n");
 }
 
 int main(int argc, char *argv[]) {

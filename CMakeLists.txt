@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(garp LANGUAGES C)
+project(sned_garp LANGUAGES C)
 
 include_directories(src)
 
