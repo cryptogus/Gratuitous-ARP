@@ -11,7 +11,7 @@ The primary purposes of Gratuitous ARP include:
 
 A Gratuitous ARP packet has the same format as a regular ARP packet but may have some fields, such as the source and destination MAC addresses, set to specific values or left blank. The sender's IP and MAC addresses are typically set, and the target IP and MAC addresses may be left blank or set to broadcast values.
 ## Implementation
-There are various ways to implement GARP, such as using rawsocket or using the pcap library.  
+There are various ways to implement GARP, such as using rawsocket or using the pcap library.
 I used rawsocket for my implementation.
 
 ## Gratuitous ARP TEST
@@ -28,11 +28,16 @@ eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 ```bash
-$ cd src/ && make
+$ cd test/ && make
 $ sudo ./garp-test eth0 172.20.255.2
 ```
-I used wireshark.  
-![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)  
+or
+```bash
+$ cmake -B build -S . && cd build && make
+$ sudo ./send-garp eth0 172.20.255.2
+```
+I used wireshark.
+![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)
 
 ---
 **IPv6 does not use the ARP (Address Resolution Protocol) as IPv4 does.** Instead, it uses the Neighbor Discovery Protocol ([NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)) to perform functions similar to ARP in IPv4. NDP is part of the ICMPv6 (Internet Control Message Protocol version 6) suite.
@@ -59,20 +64,21 @@ Here are the key differences between ARP in IPv4 and NDP in IPv6:
    - **IPv4 (ARP):** ARP does not have a standardized mechanism for Duplicate Address Detection.
    - **IPv6 (NDP):** NDP includes Duplicate Address Detection to avoid conflicts during address assignment.
 
-### Reference  
-https://wiki.wireshark.org/Gratuitous_ARP  
-https://www.practicalnetworking.net/series/arp/gratuitous-arp/  
-https://en.wikipedia.org/wiki/Address_Resolution_Protocol#ARP_announcements  
-https://velog.io/@yellowsky24/데비안에서-GARP로  
+### Reference
+https://wiki.wireshark.org/Gratuitous_ARP
+https://www.practicalnetworking.net/series/arp/gratuitous-arp/
+https://en.wikipedia.org/wiki/Address_Resolution_Protocol#ARP_announcements
+https://velog.io/@yellowsky24/데비안에서-GARP로
 https://en.wikipedia.org/wiki/ARP_spoofing
 
 ### Reference in implementation
-https://en.wikipedia.org/wiki/Ethernet_frame  
-https://en.wikipedia.org/wiki/EtherType  
-https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml  
-https://api.riot-os.org/structsockaddr__ll.html  
+https://en.wikipedia.org/wiki/Ethernet_frame
+https://en.wikipedia.org/wiki/EtherType
+https://www.iana.org/assignments/arp-parameters/arp-parameters.xhtml
+https://api.riot-os.org/structsockaddr__ll.html
 https://stackoverflow.com/questions/4139405/how-can-i-get-to-know-the-ip-address-for-interfaces-in-c
+https://github.com/pantuza/gratuitous-arp
 
 ### arp-spoofing
-https://gitlab.com/gilgil/sns/-/wikis/about-arp/report-send-arp  
-https://gitlab.com/gilgil/send-arp-test  
+https://gitlab.com/gilgil/sns/-/wikis/about-arp/report-send-arp
+https://gitlab.com/gilgil/send-arp-test
