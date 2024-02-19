@@ -1,4 +1,6 @@
 # Gratuitous-ARP (GARP)
+## TO do
+- 에러시 프로그램 종료가 아닌 에러 로그 남기고 해당 부분 다시 시작할 수 있도록 해보기
 Gratuitous ARP (Address Resolution Protocol) is an ARP packet that is sent by a device in a network to announce or update its own IP-to-MAC address mapping to other devices in the same network. Unlike a regular ARP request or response, gratuitous ARP packets are not prompted by an ARP request for the sender's IP address. Instead, they are voluntarily broadcasted to the entire network.
 
 The primary purposes of Gratuitous ARP include:
@@ -38,7 +40,8 @@ $ sudo ./send-garp eth0 172.20.255.2
 ```
 I used wireshark.
 ![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)
-
+## GARP(ARP announcements) version 2
+[Recommand GARP version 2](ver2/README.md)
 ---
 **IPv6 does not use the ARP (Address Resolution Protocol) as IPv4 does.** Instead, it uses the Neighbor Discovery Protocol ([NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)) to perform functions similar to ARP in IPv4. NDP is part of the ICMPv6 (Internet Control Message Protocol version 6) suite.
 
