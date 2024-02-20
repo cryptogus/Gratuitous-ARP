@@ -72,8 +72,9 @@ void sendGARP(const char *interface, const char *ipAddress) {
     garp.hlen = 0x06;
     /* Protocol length */
     garp.plen = 0x04;
-    /* Operation: ARP Request */
-    garp.oper = htons(0x0001);
+    /* Operation: ARP Reply, If Operation: ARP Request → ARP announcements */
+    /* Refer: https://www.practicalnetworking.net/series/arp/arp-probe-arp-announcement/, https://www.practicalnetworking.net/series/arp/gratuitous-arp/ */
+    garp.oper = htons(0x0002);
     /* Get IPv4 address for */
     struct in_addr sourceIP;
     sourceIP.s_addr = inet_addr(ipAddress);
@@ -81,7 +82,7 @@ void sendGARP(const char *interface, const char *ipAddress) {
     memcpy(garp.smac, ifr.ifr_hwaddr.sa_data, 6);
     memcpy(&garp.sip, &sourceIP, sizeof(uint32_t));
     /* Target MAC and IP address */
-    /* https://wiki.wireshark.org/Gratuitous_ARP - Discussion */
+    /* https://wiki.wireshark.org/Gratuitous_ARP - Discussion, opcode가 1일 때. 2일 때는 무조건 Gratuituous ARP */
     // memset(garp.tmac, 0xFF, 6); // In wireshark, Gratuitous ARP 로 패킷 캡처 된다.
     memset(garp.tmac, 0x00, 6); // In wireshark, ARP Anouncement 로 패킷 캡처 된다.
     memcpy(&garp.tip, &sourceIP, sizeof(uint32_t));
