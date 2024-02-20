@@ -12,14 +12,14 @@ The wiki says they are the same, and there seems to be some debate in wireshark 
 Notice that the two wireshark packet captures above differ only in the target mac address. **If anyone knows why the two are split like this, please let me know.**
 
 ## ARP announcements and Gratuitous ARP are different.
-![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/6f0333b7-12f1-4ecc-9ae8-b9fad76479f9)
 In Gratuitous ARP Packet Structure, the Opcode is set to 2, indicating a response. Refer: https://www.practicalnetworking.net/series/arp/gratuitous-arp/
+![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/6f0333b7-12f1-4ecc-9ae8-b9fad76479f9)
 
-![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/cfb12980-ab01-4af6-8107-1cf1d636165e)
 The Opcode in an ARP Announcement is set to 1, indicating a request. Typical Gratuitous ARP will have an Opcode set to 2.
 --중략--
 Like the Gratuitous ARP, the Target MAC address is ignored, in this example it is set to 0000.0000.0000, some implementations of the ARP Announcement use ffff.ffff.ffff instead.
 Refer: https://www.practicalnetworking.net/series/arp/arp-probe-arp-announcement/
+![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/cfb12980-ab01-4af6-8107-1cf1d636165e)
 
 I set opcode to 1 for all source code outside of the ver2 directory. When I read many articles about GARP, they all set the opcode(In the source code, the oper variable of the struct arphdr_t) to 1, and I didn't understand this, so I assigned it to 1. I'm not going to change this, just reflect it in the ver2/ directory. Of course, I was able to tamper with the arp table even when opcode was 1.
 
@@ -27,10 +27,12 @@ ver2 디렉터리 외의 모든 소스코드에는 opcode를 1로 설정해두�
 ## ARP Packet bytes in wireshark
 Sometimes wireshark captures 60-byte ARP packets with 18 bytes of zero padding, and other times it captures 42-byte ARP packets.
 ![스크린샷 2024-02-20 092641](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/390828ed-4dff-4f3a-8d04-41a7e2cab91b)
+
 어떤 때는 ARP 패킷이 (request, reply 상관없이) 18바이트씩 차이가 난다. 18바이트의 0 패딩이 생기는 경우가 있는데 이 이유에 대해서 알아보자. 사실 ARP 패킷에 들어갈 정보는 42바이트면 충분하다. 굳이 아무 의미없는 0이라는 값을 18바이트나 넣어줄 필요가 단순하게 생각했을 때 성능적인 측면에서 전혀 의미가 없다.
 
 
 ![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/630e7f58-90e1-4ec5-a214-feed0c9f805f)
+
 위 이미지에서 보이는 물리계층 헤더는 wireshark에서 찍히지 않는다. MAC 프레임 부터 패킷이 캡처 된다. DA는 Destination MAC이다. 위 패킷 캡처 이미지들을 보면  DA : Destination MAC Address, SA : Source MAC Address라고 이해하면 된다. 실제 위의 ARP 패킷을 Ethernet이라 되어있는 부분을 보면 6바이트씩 잡혀있는 것을 볼 수있다. Len/Type : 길이 또는 타입이고 2바이트로 나타낸다. 이제 LLC 프레임(데이터 + 패딩) 이라 되어있는 부분을 보면 최소 46바이트라는 정보가 있다.
 
 결론 부터 말하자면 **최소 프레임 길이 : 64 바이트 (MAC 헤더 14 + 데이터 46 + FCS 4)** 이라는 점이다.
@@ -45,6 +47,7 @@ FCS 4바이트를 제외하면 60바이트의 ARP 패킷이 왜 잡힌 이유가
 
 arp관련 패킷을 `packet/` 디렉터리에 3개의 pcap 파일로 올려두었다. wireshark를 이용해 보면서 공부해보면 좋을 것 같다.
 refer: http://www.ktword.co.kr/test/view/view.php?m_temp1=2965 , https://youtu.be/4xSexyzxUJo?si=7rbJAFE5QNZ05s2U , https://www.youtube.com/watch?si=EoK5HHKHuV8WnOIN&v=-M_S50Ga384&feature=youtu.be
+
 ## Build & syslog
 이전에 `printf` or `perror` 등으로 오류 및 성공 메시지를 출력하였다. 여기서는 로그를 남기도록 바꾸었다. 오류시 프로그램을 종료하는 기능도 없앴다.
 
