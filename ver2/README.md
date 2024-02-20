@@ -43,6 +43,7 @@ FCS 4바이트를 제외하면 60바이트의 ARP 패킷이 왜 잡힌 이유가
 하지만 아직 해결해야할 부분이 있다. 바로 42바이트 패킷이 캡처된다는 점이다. 이는 아래 유튜브 링크에서도 설명해준다. 일단 42 바이트 패킷이 잡힐때는 ARP 패킷이 해당 기기에서 나갈떄이다. 들어오는 패킷은 60바이트이다.
 이 이유는 바로 wireshark가 캡처하는 시점이 2계층과 3계층 사이라고 한다. 즉, ARP 패킷을 보낼 때는 패딩이 붙기 전에 wireshark에서 패킷을 캡처한 것이고 받은 ARP 패킷에는 패딩이 붙어서 60바이트로 찍혀버린 것이다.
 
+arp관련 패킷을 `packet/` 디렉터리에 3개의 pcap 파일로 올려두었다. wireshark를 이용해 보면서 공부해보면 좋을 것 같다.
 refer: http://www.ktword.co.kr/test/view/view.php?m_temp1=2965 , https://youtu.be/4xSexyzxUJo?si=7rbJAFE5QNZ05s2U , https://www.youtube.com/watch?si=EoK5HHKHuV8WnOIN&v=-M_S50Ga384&feature=youtu.be
 ## Build & syslog
 이전에 `printf` or `perror` 등으로 오류 및 성공 메시지를 출력하였다. 여기서는 로그를 남기도록 바꾸었다. 오류시 프로그램을 종료하는 기능도 없앴다.
