@@ -1,6 +1,9 @@
 # Gratuitous-ARP (GARP)
 ## TO do
 - 에러시 프로그램 종료가 아닌 에러 로그 남기고 해당 부분 다시 시작할 수 있도록 해보기
+
+https://datatracker.ietf.org/doc/html/rfc2002#section-4.6
+
 Gratuitous ARP (Address Resolution Protocol) is an ARP packet that is sent by a device in a network to announce or update its own IP-to-MAC address mapping to other devices in the same network. Unlike a regular ARP request or response, gratuitous ARP packets are not prompted by an ARP request for the sender's IP address. Instead, they are voluntarily broadcasted to the entire network.
 
 The primary purposes of Gratuitous ARP include:
