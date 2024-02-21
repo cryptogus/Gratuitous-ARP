@@ -20,6 +20,7 @@ There are various ways to implement GARP, such as using rawsocket or using the p
 I used rawsocket for my implementation.
 
 ## Gratuitous ARP TEST
+[Recommand GARP version 2](ver2/README.md)
 My Network information in WSL2
 ```bash
 $ ifconfig
@@ -44,7 +45,9 @@ $ sudo ./send-garp eth0 172.20.255.2
 I used wireshark.
 ![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)
 ## GARP(ARP announcements) version 2
-[Recommand GARP version 2](ver2/README.md)
+```bash
+$ cd ver2
+```
 ---
 **IPv6 does not use the ARP (Address Resolution Protocol) as IPv4 does.** Instead, it uses the Neighbor Discovery Protocol ([NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)) to perform functions similar to ARP in IPv4. NDP is part of the ICMPv6 (Internet Control Message Protocol version 6) suite.
 
