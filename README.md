@@ -21,7 +21,14 @@ I used rawsocket for my implementation.
 
 ## Gratuitous ARP TEST
 [Recommand GARP version 2](ver2/README.md)
-My Network information in WSL2
+
+```bash
+$ cd ver2
+$ cmake -B build -S .
+$ cd build && make
+```
+
+My Network information in WSL2 (아래는 version 1 테스트이다. opcode 부분이 특히 version2 와 차이가 있다.)
 ```bash
 $ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
@@ -44,10 +51,6 @@ $ sudo ./send-garp eth0 172.20.255.2
 ```
 I used wireshark.
 ![image](https://github.com/cryptogus/Gratuitous-ARP/assets/60291830/403279ec-16b2-4859-9256-45596d157203)
-## GARP(ARP announcements) version 2
-```bash
-$ cd ver2
-```
 ---
 **IPv6 does not use the ARP (Address Resolution Protocol) as IPv4 does.** Instead, it uses the Neighbor Discovery Protocol ([NDP](https://en.wikipedia.org/wiki/Neighbor_Discovery_Protocol)) to perform functions similar to ARP in IPv4. NDP is part of the ICMPv6 (Internet Control Message Protocol version 6) suite.
 
