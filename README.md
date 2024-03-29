@@ -1,6 +1,5 @@
 # Gratuitous-ARP (GARP)
 ## TO do
-- 에러시 프로그램 종료가 아닌 에러 로그 남기고 해당 부분 다시 시작할 수 있도록 해보기
 
 https://datatracker.ietf.org/doc/html/rfc2002#section-4.6
 
