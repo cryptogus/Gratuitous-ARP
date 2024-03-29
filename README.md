@@ -15,6 +15,8 @@ The primary purposes of Gratuitous ARP include:
 3. **Network Initialization:** Gratuitous ARP can be used during network initialization to announce the presence of a device and update ARP caches in other devices.
 
 A Gratuitous ARP packet has the same format as a regular ARP packet but may have some fields, such as the source and destination MAC addresses, set to specific values or left blank. The sender's IP and MAC addresses are typically set, and the target IP and MAC addresses may be left blank or set to broadcast values.
+
+active - standby 와 같은 서버 이중화 상황에서 Ethernet 통신의 경우 mac으로 통신을 하게 된다. 이때 active 상태의 서버 장비가 다운 되면 standby 서버 장비가 active를 시작하게 된다. 서버 ip는 바뀌지 않고, 이때 해당 장비의 mac 주소가 서버 ip와 일치하도록 다른 장비들의 arp table을 garp을 사용하여 갱신해준다.
 ## Implementation
 There are various ways to implement GARP, such as using rawsocket or using the pcap library.
 I used rawsocket for my implementation.
